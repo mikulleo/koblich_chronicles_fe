@@ -1,0 +1,80 @@
+.ariaRangeSlider:global(.__wab_instance) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--token-phhLJhocWxdp);
+  font-family: var(--token-e_nRxxcKhz-c);
+  font-size: var(--token-1JD7yS0Aqqn2);
+  line-height: var(--token-iHukMH6ccj0V);
+  min-width: 200px;
+  row-gap: var(--token-UzvsA7TfYE_y);
+}
+.freeBox__atxL {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.freeBox__atxL > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: calc(0px - var(--token-JBjaZ4N7dwxR));
+  width: calc(100% + var(--token-JBjaZ4N7dwxR));
+}
+.freeBox__atxL > :global(.__wab_flex-container) > *,
+.freeBox__atxL > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__atxL > :global(.__wab_flex-container) > picture > img,
+.freeBox__atxL
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: var(--token-JBjaZ4N7dwxR);
+}
+.text__vRUlU {
+  position: relative;
+}
+.text {
+  position: relative;
+}
+.freeBox__czSm9 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: var(--token-A21YGqUNxHMn);
+  padding-bottom: var(--token-A21YGqUNxHMn);
+  width: 100%;
+  min-width: 0;
+}
+.background {
+  display: flex;
+  background: var(--token-sgt9YyYKnDQF);
+  height: var(--token-JBjaZ4N7dwxR);
+  width: 100%;
+  min-width: 0;
+  border-radius: 99px;
+}
+.ariaSliderTrack:global(.__wab_instance) {
+  cursor: pointer;
+  opacity: 1;
+  box-sizing: border-box;
+  background: none;
+  height: var(--token-JBjaZ4N7dwxR);
+  width: 100%;
+  min-width: 0;
+}
+.sliderThumb__jGnNu:global(.__wab_instance):global(.__wab_instance) {
+  position: relative;
+  margin-top: var(--token-ZQ0eNBoDC5Qz);
+}
+.foreground {
+  display: block;
+  background: var(--token-WLWVZMhYfout);
+  height: var(--token-JBjaZ4N7dwxR);
+  border-radius: 99px 0rem 0rem 99px;
+}
+.description:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}

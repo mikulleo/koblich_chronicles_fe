@@ -1,0 +1,138 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  min-height: 0;
+  padding: 8px;
+}
+.freeBox__zitWp {
+  display: grid;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-content: flex-start;
+  justify-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns:
+    var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
+    min(
+      var(--plsmc-standard-width),
+      calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
+    )
+    minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+  padding: 16px;
+}
+.freeBox__zitWp > * {
+  grid-column: 4;
+}
+.navbar:global(.__wab_instance) {
+  max-width: 100%;
+}
+.httpRestApiFetcher__xRDlM:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+}
+.freeBox__e8Isj {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: #f5f5f5;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  border-radius: 8px;
+  padding: 16px;
+}
+.select:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 15em;
+  align-self: stretch;
+  position: relative;
+  left: auto;
+  top: auto;
+  z-index: 1;
+  margin: 8px;
+}
+.text {
+  padding-right: 0px;
+}
+.fromDatePicker:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  font-size: 0.5em;
+  font-weight: 400;
+  left: auto;
+  top: auto;
+  z-index: 1;
+  position: relative;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  align-self: baseline;
+  margin: auto 0px auto auto;
+}
+.toDatePicker:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  font-size: 0.5em;
+  font-weight: 400;
+  left: auto;
+  top: auto;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+  align-self: baseline;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin: auto 0px auto 5px;
+}
+.httpRestApiFetcher__h96GH:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.sliderCarousel:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  flex-direction: column;
+  object-fit: cover;
+  min-width: 0;
+}
+.freeBox__jc1MV {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+}
+.img > picture > img {
+  object-fit: cover;
+}
