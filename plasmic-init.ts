@@ -1,4 +1,5 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
+import { CustomTradeTable } from "./components/CustomTradeTable/CustomTradeTable";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -22,4 +23,49 @@ export const PLASMIC = initPlasmicLoader({
 // http://localhost:3000/plasmic-host).  See
 // https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
 
-// PLASMIC.registerComponent(...);
+PLASMIC.registerComponent(CustomTradeTable, {
+  name: "CustomTradeTable",
+  displayName: "Custom Trade Table",
+  importPath: "./components/CustomTradeTable/CustomTradeTable",
+  props: {
+    data: {
+      type: "object",
+      displayName: "Data",
+      description: "The data to display in the table"
+    },
+    componentData: {
+      type: "object",
+      displayName: "Component Data",
+      description: "Data needed to display ticker symbols"
+    },
+    fields: {
+      type: "object",
+      displayName: "Fields",
+      description: "Field configuration for the table columns"
+    },
+    className: {
+      type: "string",
+      displayName: "Class Name"
+    },
+    selectedRowKey: {
+      type: "string",
+      displayName: "Selected Row Key"
+    },
+    selectedRowKeys: {
+      type: "object", // This should be object, not array
+      displayName: "Selected Row Keys"
+    },
+    onRowSelectionChanged: {
+      type: "eventHandler",
+      displayName: "On Row Selection Changed",
+      argTypes: [
+        { name: "rowKeys", type: "object" },
+        { name: "rows", type: "object" }
+      ]
+    },
+    themeResetClassName: {
+      type: "themeResetClass",
+      targetAllTags: true
+    }
+  }
+});

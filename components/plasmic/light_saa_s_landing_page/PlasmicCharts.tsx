@@ -59,6 +59,12 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import Navbar from "../../Navbar"; // plasmic-import: TzYooJ-ChIAu/component
 import { DataFetcher } from "@plasmicpkgs/plasmic-query";
 import Select from "../../Select"; // plasmic-import: 1TAc3ShgQJlX/component
@@ -141,6 +147,9 @@ function PlasmicCharts__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -180,9 +189,27 @@ function PlasmicCharts__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: {},
+    $queries: $queries,
     $refs
   });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    componentData: usePlasmicDataOp(() => {
+      return {
+        sourceId: "47VpPrCKsocccAyhzPVgaC",
+        opId: "c27902d2-24a0-484c-856f-10634302ef6b",
+        userArgs: {},
+        cacheKey: `plasmic.$.c27902d2-24a0-484c-856f-10634302ef6b.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
 
   return (
     <React.Fragment>

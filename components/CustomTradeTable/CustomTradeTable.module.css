@@ -1,0 +1,79 @@
+.customTradeTableContainer {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 0;
+}
+
+.customTradeTable {
+  font-size: 13px;
+}
+
+/* Table header styling */
+.customTradeTable :global(.ant-table-thead > tr > th) {
+  background-color: #f0f5ff;
+  color: #1a237e;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+/* Table cell styling */
+.customTradeTable :global(.ant-table-tbody > tr > td) {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* Alternating row colors */
+.customTradeTable :global(.ant-table-tbody > tr:nth-child(odd)) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.customTradeTable :global(.ant-table-tbody > tr:hover > td) {
+  background-color: #e6f7ff;
+}
+
+/* Make the table fill more space */
+.customTradeTable :global(.ant-table) {
+  width: 100%;
+}
+
+/* Style filter dropdown */
+.customTradeTable :global(.ant-dropdown) {
+  min-width: 200px;
+}
+
+/* Ensure table takes up available height */
+.customTradeTableContainer, 
+.customTradeTable,
+.customTradeTable :global(.ant-spin-container),
+.customTradeTable :global(.ant-table-container) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.customTradeTable :global(.ant-table-body) {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto !important;
+}
+
+/* Style the filters and sorters */
+.customTradeTable :global(.ant-table-filter-trigger-container) {
+  background: transparent;
+}
+
+.customTradeTable :global(.ant-table-column-sorter) {
+  margin-left: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .customTradeTable :global(.ant-table-thead > tr > th),
+  .customTradeTable :global(.ant-table-tbody > tr > td) {
+    padding: 8px;
+    font-size: 12px;
+  }
+}

@@ -69,6 +69,8 @@ import Navbar from "../../Navbar"; // plasmic-import: TzYooJ-ChIAu/component
 import Section from "../../Section"; // plasmic-import: rEAlJ2tapI6z/component
 import { RichTable } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
+import { DataFetcher } from "@plasmicpkgs/plasmic-query";
+import { CustomTradeTable } from "../../CustomTradeTable/CustomTradeTable"; // plasmic-import: ulUpaqEWTxZr/codeComponent
 import FooterSection from "../../FooterSection"; // plasmic-import: VwP4GkeGOFgi/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -100,6 +102,9 @@ export type PlasmicTrades__OverridesType = {
   navbar?: Flex__<typeof Navbar>;
   section?: Flex__<typeof Section>;
   table2?: Flex__<typeof RichTable>;
+  tradesApiFetches?: Flex__<typeof DataFetcher>;
+  customTradeTable?: Flex__<typeof CustomTradeTable>;
+  text?: Flex__<"div">;
   footerSection?: Flex__<typeof FooterSection>;
 };
 
@@ -191,7 +196,7 @@ function PlasmicTrades__RenderFunc(props: {
   });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query2: usePlasmicDataOp(() => {
+    tradesDataDb: usePlasmicDataOp(() => {
       return {
         sourceId: "47VpPrCKsocccAyhzPVgaC",
         opId: "a9538212-3ab8-4729-8546-238b1df706ce",
@@ -201,7 +206,7 @@ function PlasmicTrades__RenderFunc(props: {
         roleId: null
       };
     }),
-    componentData: usePlasmicDataOp(() => {
+    tickersDataDb: usePlasmicDataOp(() => {
       return {
         sourceId: "47VpPrCKsocccAyhzPVgaC",
         opId: "00567d87-1d86-4f40-8279-a28fc5d588fd",
@@ -293,7 +298,7 @@ function PlasmicTrades__RenderFunc(props: {
                 className: classNames("__wab_instance", sty.table2),
                 data: (() => {
                   try {
-                    return $queries.query2;
+                    return $queries.tradesDataDb;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -472,7 +477,7 @@ function PlasmicTrades__RenderFunc(props: {
                   __composite["0"]["isHidden"] = false;
                   __composite["0"]["title"] = "Type";
                   __composite["1"]["expr"] = (currentItem, currentValue) => {
-                    return $queries.componentData.data.find(
+                    return $queries.tickersDataDb.data.find(
                       t => t.id === currentItem.ticker_id
                     )?.symbol;
                   };
@@ -620,6 +625,142 @@ function PlasmicTrades__RenderFunc(props: {
                 />
               );
             })()}
+            <DataFetcher
+              data-plasmic-name={"tradesApiFetches"}
+              data-plasmic-override={overrides.tradesApiFetches}
+              className={classNames("__wab_instance", sty.tradesApiFetches)}
+              dataName={"fetchedTradesData"}
+              errorDisplay={
+                <DataCtxReader__>
+                  {$ctx => "Error fetching data"}
+                </DataCtxReader__>
+              }
+              errorName={"fetchTradesError"}
+              headers={{ "Content-Type": "application/json" }}
+              loadingDisplay={
+                <DataCtxReader__>{$ctx => "Loading..."}</DataCtxReader__>
+              }
+              method={"GET"}
+              noLayout={false}
+              previewErrorDisplay={false}
+              previewSpinner={false}
+              url={"http://localhost:3001/api/trades"}
+            >
+              <DataCtxReader__>
+                {$ctx => (
+                  <CustomTradeTable
+                    data-plasmic-name={"customTradeTable"}
+                    data-plasmic-override={overrides.customTradeTable}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.customTradeTable
+                    )}
+                    componentData={(() => {
+                      try {
+                        return $queries.tickersDataDb.data;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    data={(() => {
+                      try {
+                        return $queries.tradesDataDb.data;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    fields={[
+                      {
+                        key: "type",
+                        fieldId: "type",
+                        title: "Type",
+                        isHidden: false
+                      },
+                      {
+                        key: "ticker_id",
+                        fieldId: "ticker_id",
+                        title: "Ticker",
+                        isHidden: false
+                      },
+                      {
+                        key: "entry_date",
+                        fieldId: "entry_date",
+                        title: "Buy Date",
+                        isHidden: false,
+                        dataType: "datetime",
+                        dateStyle: "medium"
+                      },
+                      {
+                        key: "entry_price",
+                        fieldId: "entry_price",
+                        title: "Entry",
+                        isHidden: false,
+                        dataType: "currency",
+                        maximumFractionDigits: 2
+                      },
+                      {
+                        key: "normalization_factor",
+                        fieldId: "normalization_factor",
+                        title: "Size",
+                        isHidden: false,
+                        dataType: "percent",
+                        maximumFractionDigits: 0
+                      },
+                      {
+                        key: "initial_stop_loss",
+                        fieldId: "initial_stop_loss",
+                        title: "Init Stop Loss",
+                        isHidden: false,
+                        dataType: "currency",
+                        maximumFractionDigits: 2
+                      },
+                      {
+                        key: "risk_percent",
+                        fieldId: "risk_percent",
+                        title: "Position Risk",
+                        isHidden: false,
+                        dataType: "percent",
+                        maximumFractionDigits: 2
+                      }
+                    ]}
+                    themeResetClassName={classNames(
+                      projectcss.root_reset,
+                      projectcss.root_reset_tags,
+                      projectcss.plasmic_default_styles,
+                      projectcss.plasmic_mixins,
+                      projectcss.plasmic_tokens,
+                      plasmic_antd_5_hostless_css.plasmic_tokens,
+                      plasmic_plasmic_rich_components_css.plasmic_tokens,
+                      plasmic_library_tailwind_3_4_colors_css.plasmic_tokens,
+                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens
+                    )}
+                  />
+                )}
+              </DataCtxReader__>
+            </DataFetcher>
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text
+              )}
+            >
+              {"Enter some text"}
+            </div>
           </Section>
           <FooterSection
             data-plasmic-name={"footerSection"}
@@ -639,12 +780,24 @@ const PlasmicDescendants = {
     "navbar",
     "section",
     "table2",
+    "tradesApiFetches",
+    "customTradeTable",
+    "text",
     "footerSection"
   ],
   headerHeroSection: ["headerHeroSection", "navbar"],
   navbar: ["navbar"],
-  section: ["section", "table2"],
+  section: [
+    "section",
+    "table2",
+    "tradesApiFetches",
+    "customTradeTable",
+    "text"
+  ],
   table2: ["table2"],
+  tradesApiFetches: ["tradesApiFetches", "customTradeTable"],
+  customTradeTable: ["customTradeTable"],
+  text: ["text"],
   footerSection: ["footerSection"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -656,6 +809,9 @@ type NodeDefaultElementType = {
   navbar: typeof Navbar;
   section: typeof Section;
   table2: typeof RichTable;
+  tradesApiFetches: typeof DataFetcher;
+  customTradeTable: typeof CustomTradeTable;
+  text: "div";
   footerSection: typeof FooterSection;
 };
 
@@ -723,6 +879,9 @@ export const PlasmicTrades = Object.assign(
     navbar: makeNodeComponent("navbar"),
     section: makeNodeComponent("section"),
     table2: makeNodeComponent("table2"),
+    tradesApiFetches: makeNodeComponent("tradesApiFetches"),
+    customTradeTable: makeNodeComponent("customTradeTable"),
+    text: makeNodeComponent("text"),
     footerSection: makeNodeComponent("footerSection"),
 
     // Metadata about props expected for PlasmicTrades

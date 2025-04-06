@@ -106,7 +106,7 @@ export default function GlobalContextsProvider(
               fontFamily: "Montserrat",
               fontSize: "18px",
               fontWeight: "400",
-              lineHeight: "150%",
+              lineHeight: "100%",
               color: "#00000080",
               letterSpacing: "normal"
             }
@@ -115,7 +115,7 @@ export default function GlobalContextsProvider(
               fontFamily: "Montserrat",
               fontSize: "24px",
               fontWeight: "400",
-              lineHeight: "150%",
+              lineHeight: "100%",
               color: "#00000080",
               letterSpacing: "normal"
             }
